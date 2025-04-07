@@ -1,0 +1,129 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+	<title>Agregar Actividades.</title>
+	<link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+<body>
+	<div>
+		<h1>Formulario Para Agregra Actividades.</h1>
+		<p></p>
+		Hola, bienvenido a esta sección. Si estás interesado en promocionar una actividad en nuestra página web, aquí podrás completar los datos 
+		necesarios para llevar a cabo tus objetivos. Por favor, completa el siguiente formulario:
+		<p></p>
+	</div>
+    <div class="main-container">
+		<div id="val-box" hidden>
+			<div id="val-msg"></div>
+			<ul id="val-list"></ul>
+		</div>
+		<form name="myform" method="post" enctype="multipart/form-data">
+			<div class="organizador">
+				¿Quién organiza la actividad?
+				<p></p>
+				<label for="name">Nombre.</label>
+				<input type="text" name="nombre" id="name" required placeholder="Máximo de 200 caracteres"><br>
+	
+				<label for="email">Email.</label>
+				<input type="email" name="email" id="email" maxlength="100" placeholder="Mínimo 10 caracteres y Máximo de 100, por ejemplo: ejemplo@correo.com" required><br>
+			
+				<label for="phone">Número de Celular.</label>
+				<input type="tel" name="phone" id="phone" minlength="8" maxlength="12" placeholder="Por ejemplo: +56912345678 ó 912345678"><br>
+	
+				<p><strong>Contactar por:</strong></p>
+				<div class="contact">
+					<input type="checkbox" id="contact-w" name="whatsapp" onclick="revisaCheck(this);"> whatsapp.
+					<input id="whatsapp" type="text" name="whatsapp-id" style="display:none;" placeholder="Mínimo 4 caracteres y Máximo de 50"> <br>
+					<input type="checkbox" id="contact-i" name="instagram" onclick="revisaCheck(this);"> instagram.
+					<input id="instagram" type="text" name="instagram-id" style="display:none;" placeholder="Mínimo 4 caracteres y Máximo de 50"><br>
+					<input type="checkbox" id="contact-t" name="telegram" onclick="revisaCheck(this);"> telegram.
+					<input id="telegram" type="text" name="telegram-id" style="display:none;" placeholder="Mínimo 4 caracteres y Máximo de 50"><br>
+					<input type="checkbox" id="contact-x" name="x" onclick="revisaCheck(this);"> X.
+					<input id="x" type="text" name="x-id" style="display:none;" placeholder="Mínimo 4 caracteres y Máximo de 50"><br>
+					<input type="checkbox" id="contact-ti" name="tiktok" onclick="revisaCheck(this);"> Tiktok.
+					<input id="tiktok" type="text" name="tiktok-id" style="display: none;" placeholder="Mínimo 4 caracteres y Máximo de 50"><br>
+					<input type="checkbox" id="contact-otro" name="otro" onclick="revisaCheck(this);"> Otro.
+					<input id="otro" type="text" name="otro-id" style="display: none;" placeholder="Mínimo 4 caracteres y Máximo de 50"><br>
+				</div>
+			</div>
+
+			<p></p>
+
+			<div class="lugar">
+				¿Dónde se realizará?
+				<p></p>
+
+				<label for="select-region">Región.</label>
+				<select name="select-region" id="select-region" required>
+					<option value="">Selecione una Región</option>
+				</select><br>
+
+				<label for="select-comuna">Comuna</label>
+				<select name="select-comuna" id="select-comuna" required>
+					<option value="">Selecione una Comuna</option>
+				</select><br>
+
+				<label for="sector">Sector.</label>
+				<input type="text" name="sector" id="sector" maxlength="110" placeholder="Máximo de 100 caracteres"><br>
+			</div>
+
+			<p></p>
+
+			<div class="evento">
+				¿Cuándo y de qué tarta?
+				<p></p>
+				<label for="inicio">Fechas de Inicio.</label>
+				<input name="inicio" type="datetime-local" id="inicio"><br>
+				
+
+				<label for="fin">Fechas de Término.</label>
+				<input name="fin" type="datetime-local" id="fin"><br>
+
+				<label for="description">Descripción de la Actividad</label>
+				<textarea name="description" id="description" rows="10" cols="50"></textarea><br>
+				
+				<p><strong>Tema:</strong></p>
+				<div class="tema">
+					<input type="checkbox" name="musica"> Música.<br>
+
+					<input type="checkbox" name="deporte"> Deporte.<br>
+
+					<input type="checkbox" name="ciencias"> Ciencias.<br>
+					
+					<input type="checkbox" name="religion"> Religión.<br>
+
+					<input type="checkbox" name="politica"> política.<br>
+
+					<input type="checkbox" name="Comida"> Comida.<br>
+
+					<input type="checkbox" name="juegos"> Juegos.<br>
+	
+					<input type="checkbox" name="tecnologia"> Tecnología.<br>
+
+					<input type="checkbox" name="baile"> Baile.<br>
+					
+					<input type="checkbox" id="tema-otro" name="otro" onclick="revisaCheck_2(this)"> Otro.
+					<input id="otro-text" type="text" name="otro" style="display: none;" placeholder="Mínimo 3 caracteres y Máximo de 15"><br>
+						
+				</div>
+				<p></p>
+				
+				<label for="foto">Fotos</label>
+				<div id="file-container">
+					<input type="file" name="foto" id="foto" class="foto-input" accept="image/*,.pdf"><br>
+					<button type="button" id="add-file">Agregar otra foto</button>
+					<p></p>
+				</div>
+			</div>
+			<button id="submit-btn" type="button">Agregar Esta Actividad</button>
+		<div id="err-box" hidden>
+			<div id="err-msg"></div>
+			<ul id="err-list"></ul>
+		</div>
+		</form>
+	</div>
+	<p></p>
+	<script src="../js/validador.js"></script>
+	<script src="../js/select.js"></script>
+</body>
+</html>
