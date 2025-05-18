@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Información de Actividades</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Información de Actividades</h1>
+    </div>
+
+    <div class="actividad">
+        <h2>{{ actividad.nombre_actividad }}</h2>
+        <p>
+            Hola, bienvenido a {{ actividad.nombre_actividad }} que yo, el organizador {{ actividad.organizador }}, estoy impartiendo en 
+            {{ actividad.sector }}, en la comuna de {{ actividad.comuna }}, región de {{ actividad.region }}.
+        </p>
+        <p>{{ actividad.descripcion }}</p>
+
+        <p>Si estás interesado en participar, puedes contactarnos en los siguientes medios:</p>
+        <ul>
+            <li>Correo: {{ actividad.email }}</li>
+            <li>Teléfono: {{ actividad.celular }}</li>
+            {% for contacto in actividad.contactos %}
+                <li>{{ contacto.tipo }}: {{ contacto.id }}</li>
+            {% endfor %}
+        </ul> 
+
+        <img src="{{ url_for('static', filename=actividad.foto_ruta[7:]) }}" alt="{{ actividad.foto_alt }}" width="300"
+            data-full="{{ url_for('static', filename=actividad.foto_ruta[7:]) }}"
+            class="imagenes">
+
+        <div>
+            <a href="{{ url_for('lista_actividades') }}" class="btn">Lista de actividades.</a>
+            <a href="{{ url_for('index') }}" class="btn">Página Principal.</a>
+        </div>
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="imgModal" src = "#" alt = "#">
+    </div>
+
+    <script src="{{ url_for('static', filename='js/actividades.js') }}"></script>
+</body>
+</html>
