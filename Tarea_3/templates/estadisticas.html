@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Estadisticas</title>
+	<link rel = "stylesheet" type ="text/css" href="../static/styles.css">
+</head>
+<body>
+<h1> Estadísticas. </h1>
+{% block content %}    
+<div class="stats-container">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+		<p class="highcharts-description">
+			Este gráfico muestra la cantidad de actividades por día.
+		</p>
+	</figure>
+
+    <figure class="highcharts-figure">
+        <div id="container2"></div>
+        <p class="highcharts-description">
+            Este gráfico muestra el total de actividades por tipo.
+        </p>
+    </figure>
+
+    <figure class="highcharts-figure">
+        <div id="container3"></div>
+        <p class="highcharts-description">
+            Este gráfico muestra actividades por mes y hora.
+        </p>
+    </figure>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{url_for('static', filename='js/stats.js')}}"></script>
+{% endblock %}
+
+<div>
+	<a href="{{ url_for('index') }}" class="btn">Página Principal.</a>
+</div>
+
+</body>
+</html>
