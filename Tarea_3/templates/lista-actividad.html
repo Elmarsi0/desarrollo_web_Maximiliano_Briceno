@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Lista de Actividades.</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Lista de Actividades.</h1>
+    <div class="tabla2">
+        <table>
+            <tr>
+                <td>Nombre de Actividad.</td><td>Organizador.</td><td>Tema.</td><td>Inicio.</td><td>Término.</td><td>Región.</td><td>Comuna.</td><td>Sector.</td><td>Foto.</td>
+            </tr>
+            {% for actividad in actividades %}
+            <tr onclick="window.location.href='{{ url_for('actividad', id=actividad.id) }}'" style="cursor:pointer;">
+
+                <td>{{ actividad.nombre_actividad }}.</td>
+                <td>{{ actividad.organizador }}</td>
+
+                <td>
+                    <ul>
+                    {% for tem in actividad.temas %}
+                        <li> {{ tem.tema }} </li>
+                    {% endfor %}
+                    </ul>
+                </td>     
+
+                <td>
+                    <p>{{ actividad.inicio_fecha }}</p>
+                    <p>{{ actividad.inicio_hora }}</p>
+                </td>
+                <td>
+                    <p>{{ actividad.termino_fecha }}</p>
+                    <p>{{ actividad.termino_hora }}</p>
+                </td>
+                <td>{{ actividad.region }}.</td>
+                <td>{{ actividad.comuna }}.</td>
+                <td>{{ actividad.sector }}.</td>
+                <td>
+                    <img src="{{ url_for('static', filename=actividad.foto_ruta[7:]) }}" alt="{{ actividad.foto_alt }}" width="300">
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <p></p>
+    <div class="paginacion">
+        {% if page > 1 %}
+            <a href="{{ url_for('lista_actividades', page=page-1) }}">Anterior</a>
+        {% endif %}
+        {% if hay_mas %}
+            <a href="{{ url_for('lista_actividades', page=page+1) }}">Siguiente</a>
+        {% endif %}
+    </div>
+    <p></p>
+    <div>
+        <a href="{{ url_for('index') }}" class="btn">Página Principal.</a>
+    </div>
+</body>
+</html>

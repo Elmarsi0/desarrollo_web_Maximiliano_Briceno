@@ -44,3 +44,34 @@ En esta carpeta se guardarán todos los archivos http que son necesarios para el
 #### 5.- app.py
 
 Este archivo es el servidor principal de la aplicación web hecha con Flask. Su propósito es manejar la lógica de un sitio web (en nuestro caso, el de un centro recreativo), donde los usuarios pueden registrar y ver actividades. Además, dicho archivo define las rutas principales de la página web y realiza las validaciones correspondientes una vez los datos fueron mandados por el cliente. 
+
+
+## Tarea 3.
+
+### Observaciones.
+
+En esta entrega se solicitó implementar (Mediante el uso de AJAX) una serie de gráficos, donde sus datos se deben obtener a partir de la base de datos. Además, también se solicitó implementar una nueva funcionalidad en nuestra página web, la cual es la creación de una sección de comentarios. Dichas implementaciones se ven reflejadas en las siguientes secciones:
+
+#### 1.- database
+
+En esta carpeta se agregó un nuevo archivo, llamado "tabla-comentario.sql", por lo que en el archivo init_dbs.py se agregó un nuevo método para poder cargar esta tabla nueva a la base de datos. Por otra parte, en el archivo db.py se agregarón nuevas funciones que nos permiten acceder a esta tabla para obtener y/o modificar los datos de la misma.
+
+
+#### 2.- py
+
+En el archivo validation.py se crearon funciones que nos permita validar el largo del nombre y del texto en la sección de comentarios.
+
+
+#### 3.- static
+
+En la carpeta js se crearon 2 nuevos archivos javaScript, llamados "comentarios.js" y "stats.js". Donde cometarios.js implementa funcionalidades que interactúan con un forms implementados en el template actividad.html, dichas funciones permiten válidar las condiciones ya mencionadas anteriormente, cargar comentarios (por medio del uso de fetch) y enviar la información dada por form a la base de datos de nuestra aplicación web. Por otra parte, el archivo stats.js nos permite generar gráficos, por medio de Highcharts y el uso de fetch, donde los datos se obtienen de la información base de datos proporcionada por la app.py.
+
+
+#### 4.- templates
+
+En esta sección solo 2 archivos sufrieron modificaciones, "actividades.html" y "estadisticas.html". En actividades.html se créo un form para poder ingresar un nuevo comentario a una determinada actividad en la página web. Además, en esta misma ruta url se puede vislumbrar los comentarios de otros usuarios, esto se hizo con la finalidad de que el usuario interesado en dicha actividad, pueda conocer la opinión de otras personas antes de inscribirse en dicha actividad. Por otra parte, en estadisticas.html se eliminaron las imágenes de gráficos con datos ficticios para poder cargar, los gráficos generados en el archivo stats.js, junto con la ayuda de Highcharts.
+
+
+#### 5.- app.py
+
+En este archivo se agregarón nuevas rutas (por medio de flask) que nos permiten cumplir con lo solicitado. Además, los datos que se obtuvieron a partir del form en la sección de actividades.html se transformarán en un archivo json para la posterior carga de datos (usando fetch) en el archivo comentarios.js (pasando primero por el submmit). Dicho pensamiento se extiende para los datos necesarios para la implementación de los gráficos en estadisticas.html

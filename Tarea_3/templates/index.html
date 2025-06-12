@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Centro recreativo </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div>
+        <h1> Bienvenido al Centro de Actividades. </h1>
+        <div class="interfaz">
+            <table>
+                <tr>
+                    <td><a href="{{ url_for('agregar_actividad') }}">Agregar actividad</a></td>
+                </tr>
+                <tr>
+                    <td><a href="{{ url_for('lista_actividades') }}">Ver listados de actividades</a></td>
+                </tr>
+                <tr>
+                    <td><a href="{{ url_for('view_estats') }}">Estadísticas</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tabla">
+            <table>
+                <tr>
+                    <th>Nombre de Actividad</th><th>Tema</th><th>Inicio</th><th>Término</th><th>Región</th><th>Comuna</th><th>Sector</th><th>Foto</th>
+                </tr>
+
+                {% for actividad in actividades %}
+                <tr>
+                    <td>
+                        
+                        {% if actividad.temas %}
+                        {{ actividad.temas[0].nombre_actividad }}
+                        {% endif %}
+
+                    </td>
+                    <td>
+                        <ul>
+                        {% for tem in actividad.temas %}
+                            <li> {{ tem.tema }} </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <p>{{ actividad.dia_hora_inicio.strftime("%d-%m-%Y") }}</p>
+                        <p>{{ actividad.dia_hora_inicio.strftime("%H:%M") }}</p>
+                    </td>
+                    <td>
+                        {% if actividad.dia_hora_termino %}
+                        <p>{{ actividad.dia_hora_termino.strftime("%d-%m-%Y") }}</p>
+                        <p>{{ actividad.dia_hora_termino.strftime("%H:%M") }}</p>
+                        {% else %}
+                        <p>-</p>
+                        {% endif %}
+                    </td>
+                    <td>{{ actividad.comuna.region.nombre }}</td>
+                    <td>{{ actividad.comuna.nombre }}</td>
+                    <td>{{ actividad.sector or "-" }}</td>
+                    <td>
+                        {% if actividad.fotos and actividad.fotos|length > 0 %}
+
+                            <img src="{{ url_for('static', filename=actividad.fotos[0].ruta_archivo[7:]) }}"
+                            alt="{{ actividad.fotos[0].nombre_archivo }}" width="300">
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
